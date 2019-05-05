@@ -1,7 +1,7 @@
 import typing
 
 import torch
-from torch.nn.modules.loss import _Loss, _assert_no_grad
+from torch.nn.modules.loss import _Loss
 
 from pysgmcmc.torch_typing import (
     VariancePrior, WeightPrior, Predictions, Targets,
@@ -61,7 +61,6 @@ class NegativeLogLikelihood(_Loss):
             Scalar value.
             NLL of BNN predictions given as `input` with respect to labels `target`.
         """
-        _assert_no_grad(target)
 
         batch_size = input.size(0)
 

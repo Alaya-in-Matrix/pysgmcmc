@@ -338,7 +338,8 @@ class BayesianNeuralNetwork(object):
             )
             with torch.no_grad():
                 self.network_weights = weights
-                return self.model(torch.from_numpy(x_test_).float()).numpy()[:, 0]
+                # return self.model(torch.from_numpy(x_test_).float()).numpy()[:, 0]
+                return self.model(torch.from_numpy(x_test_).float()).numpy()
 
         logging.debug("Predicting with %d networks." % len(self.sampled_weights))
         network_outputs = [
