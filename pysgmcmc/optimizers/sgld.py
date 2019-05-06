@@ -96,11 +96,10 @@ class SGLD(Optimizer):
                 )
                 #  }}} Momentum update #
 
-                # if state["iteration"] > group["num_burn_in_steps"]:
-                #     sigma = 1. / torch.sqrt(torch.tensor(lr))
-                # else:
-                #     sigma = torch.zeros_like(parameter)
-                sigma = 1. / torch.sqrt(torch.tensor(lr))
+                if state["iteration"] > group["num_burn_in_steps"]:
+                    sigma = 1. / torch.sqrt(torch.tensor(lr))
+                else:
+                    sigma = torch.zeros_like(parameter)
 
                 preconditioner = (
                     1. / torch.sqrt(momentum + group["diagonal_bias"])
